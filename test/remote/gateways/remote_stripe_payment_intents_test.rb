@@ -743,8 +743,9 @@ class RemoteStripeIntentsTest < Test::Unit::TestCase
     assert get_response = @gateway.show_intent(intent_id, options)
     assert_equal 'requires_confirmation', get_response.params['status']
 
-    assert confirm_response = @gateway.confirm_intent(intent_id, nil, return_url: 'https://example.com/return-to-me')
+    assert confirm_response = @gateway.confirm_intent(intent_id, nil, options.merge(return_url: 'https://example.com/return-to-me', payment_method_types: 'card'))
     assert_equal 'redirect_to_url', confirm_response.params.dig('next_action', 'type')
+    assert_equal 'card', confirm_response.params.dig('payment_method_types')[0]
   end
 
   def test_create_a_payment_intent_and_manually_capture
