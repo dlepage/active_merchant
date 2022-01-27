@@ -19,8 +19,8 @@ module ActiveMerchant
     # so if validation fails you can not correct and resend using the
     # same order id
     class RealexGateway < Gateway
-      self.live_url = 'https://pay.realexpayments.com/pay' 
-      self.test_url = 'https://pay.sandbox.realexpayments.com/pay'
+      self.live_url = 'https://epage.payandshop.com/epage-remote.cgi' 
+      self.test_url = 'https://hpp.sandbox.realexpayments.com/pay'
       
       CARD_MAPPING = {
         'master'            => 'MC',
